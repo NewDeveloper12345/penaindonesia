@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant sepia (&:where(.sepia, .sepia *));
+
+:root {
+  --font-serif: 'Lora', 'Merriweather', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+.reader-content {
+  font-family: var(--font-serif);
+  line-height: 1.85;
+  user-select: text;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.chapter-content {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.chapter-content p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.chapter-content .center-aligned-text,
+.chapter-content center {
+  text-align: center !important;
+}

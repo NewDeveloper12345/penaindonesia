@@ -1,0 +1,118 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // =========================================================================
+    // KEAMANAN TINGGI: KUNCI RAHASIA HANYA ADA DI APLIKASI PENULIS
+    // =========================================================================
+    function punyaKunciPenulis() {
+      return request.resource.data.authKey == "789" || 
+             request.resource.data.passkey == "789" ||
+             request.resource.data.adminKey == "789";
+    }
+
+    function punyaKunciHapus() {
+      return resource.data.authKey == "789" || 
+             resource.data.passkey == "789" ||
+             resource.data.adminKey == "789";
+    }
+
+    // 1. DATA KARYA: NOVEL & BUKU
+    match /novels/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /novel/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /books/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /buku/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+
+    // 2. DATA SERI NOVEL (Mendukung 'seri', 'series', dan 'book_series')
+    match /seri/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /series/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /book_series/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+
+    // 3. PENGUMUMAN & TOKOH/KARAKTER
+    match /announcements/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /pengumuman/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /characters/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+    match /karakter/{docId} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+
+    // 4. DATA PEMBACA: REAKSI EMOJI, RATING BINTANG, VIEW STATS, RIWAYAT BACA
+    match /chapter_reactions/{docId} {
+      allow read, create, update: if true;
+      allow delete: if false;
+    }
+    match /novel_reactions/{docId} {
+      allow read, create, update: if true;
+      allow delete: if false;
+    }
+    match /novel_view_stats/{docId} {
+      allow read, create, update: if true;
+      allow delete: if false;
+    }
+    match /chapter_view_stats/{docId} {
+      allow read, create, update: if true;
+      allow delete: if false;
+    }
+    match /novel_rating_stats/{docId} {
+      allow read, create, update: if true;
+      allow delete: if false;
+    }
+    match /novel_user_ratings/{docId} {
+      allow read, create, update: if true;
+      allow delete: if true;
+    }
+    match /reading_history/{docId} {
+      allow read, create, update: if true;
+      allow delete: if true;
+    }
+
+    // 5. DEFAULT KEAMANAN UNTUK KOLEKSI LAINNYA
+    match /{document=**} {
+      allow read: if true;
+      allow create, update: if punyaKunciPenulis();
+      allow delete: if punyaKunciHapus();
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Pena Indonesia - Membaca Novel",
+  "description": "Platform web pembaca novel karya anak bangsa Indonesia dengan pengalaman membaca nyaman dan koleksi lengkap.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

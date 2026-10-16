@@ -1,0 +1,25 @@
+{
+  "name": "Pena Indonesia - Membaca Novel Karya Anak Bangsa",
+  "short_name": "Pena Indonesia",
+  "description": "Platform dan web pembaca novel karya anak bangsa Indonesia dengan pengalaman membaca yang nyaman, fitur audio/reaksi, dan koleksi lengkap.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAF9F5",
+  "theme_color": "#FAF9F5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
